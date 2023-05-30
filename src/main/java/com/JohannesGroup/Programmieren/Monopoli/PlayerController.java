@@ -1,22 +1,24 @@
 package com.JohannesGroup.Programmieren.Monopoli;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/player")
 public class PlayerController {
-
-    @GetMapping()
-    public List<PlayerEntity> getPlayerEntity () {
-        return List.of(
-                new PlayerEntity(
-                        1L, "Johannes"
-                )
-        );
+    @Autowired
+    private PlayerRepository playerRepository;
+    @GetMapping("/players")
+    public List<PlayerEntity> getAllPlayers() {
+        List<PlayerEntity> allPlayers = new ArrayList<>();
+        Iterable<PlayerEntity> iterable = playerRepository.findAll();
+        for(PlayerEntity playerEntity : iterable) {
+            allPlayers.add(playerEntity);
+        }
+        return allPlayers;
     }
 
 }

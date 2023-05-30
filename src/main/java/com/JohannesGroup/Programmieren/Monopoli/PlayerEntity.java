@@ -1,20 +1,34 @@
 package com.JohannesGroup.Programmieren.Monopoli;
 
+import jakarta.persistence.*;
+@Entity
+@Table(name = "players")
 public class PlayerEntity {
 
-    private long id;
+    @Id
+    private Integer id;
+    @Column
     private String name;
+    @Version
+    private int version;
 
-    public PlayerEntity(long id, String name) {
-        this.id = id;
-        this.name = name;
+    @OneToOne
+    @JoinColumn(name="accountid")
+    private AccountEntity account;
+
+    public AccountEntity getAccount() {
+        return account;
     }
 
-    public long getId() {
+    public void setAccount(AccountEntity account) {
+        this.account = account;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,5 +38,13 @@ public class PlayerEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

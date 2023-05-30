@@ -1,20 +1,23 @@
 package com.JohannesGroup.Programmieren.Monopoli;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "banks")
 public class BankEntity {
-
-    private long id;
+    @Id
+    private Integer id;
+    @Column
     private String name;
+    @Version
+    private int version;
 
-    public BankEntity(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,5 +27,13 @@ public class BankEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }
