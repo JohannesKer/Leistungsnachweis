@@ -22,8 +22,9 @@ public class TransactionController {
     @Autowired
     private PlayerRepository playerRepository;
 
+    // Änderung in Datenbank wird vorgenommen
     @PostMapping("/transactions")
-    @Transactional
+    @Transactional      // Das TransactionDTO muss im http request body übermittelt werden ->  spring boot übersetzt von json nach java automatisch
     public TransactionEntity createTransaction(@RequestBody TransactionDto transactionDto) {
         Optional<BankEntity> optionalBankEntity = bankRepository.findById(transactionDto.getBankid());
         if(optionalBankEntity.isEmpty()) {
@@ -37,10 +38,10 @@ public class TransactionController {
         if(optionalRecipient.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find a recipient with recipientid = " + transactionDto.getRecipientid());
         }
-        TransactionEntity  transactionEntity = new TransactionEntity();
-        transactionEntity.setBank(optionalBankEntity.get());
-        transactionEntity.setAmount(transactionDto.getAmount());
-        PlayerEntity recipient = optionalRecipient.get();
+        TransactionEntity  transactionEntity = new TransactionEntity(); // neue instanz wird erzeugt
+        transactionEntity.setBank(optionalBankEntity.get());        // Bank wird gesetzt
+        transactionEntity.setAmount(transactionDto.getAmount());        // betrag wird gesetzt
+        PlayerEntity recipient = optionalRecipient.get();       // neue Instanz
         transactionEntity.setRecipient(optionalRecipient.get());
         PlayerEntity sender = optionalSender.get();
         transactionEntity.setSender(sender);

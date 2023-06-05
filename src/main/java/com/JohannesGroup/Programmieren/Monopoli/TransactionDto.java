@@ -4,8 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
 
-public class TransactionDto {
-
+public class TransactionDto {       // vereinfachte Klasse wird nur verwendet um
+                                    // neue Instanz zu erzeugen
 
     private Integer id;
 
