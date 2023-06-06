@@ -485,3 +485,7 @@ drop table players [90107-214]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "TRANSACTIONS" nicht gefunden
 Table "TRANSACTIONS" not found; SQL statement:
 drop table transactions [42102-214]
+2023-06-06 15:51:54 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*]accounts(id, version, accountnumber, balance, bankid) values(3, 1, '33333', 20000, 1)"; erwartet "ALTER, ANALYZE"
+Syntax error in SQL statement "[*]accounts(id, version, accountnumber, balance, bankid) values(3, 1, '33333', 20000, 1)"; expected "ALTER, ANALYZE"; SQL statement:
+accounts(id, version, accountnumber, balance, bankid) values(3, 1, '33333', 20000, 1) [42001-214]
