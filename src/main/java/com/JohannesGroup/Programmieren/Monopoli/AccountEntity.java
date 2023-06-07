@@ -14,6 +14,7 @@ public class AccountEntity {
     @Column
     private Integer balance;
 
+
     public void subtractAmountFromBalance (int amount) {
         this.balance = this.balance - amount;
     }
